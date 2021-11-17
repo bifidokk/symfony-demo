@@ -1,5 +1,7 @@
 {
     "license": "proprietary",
+    "name": "bifidokk/symfony-demo",
+    "description": "Symfony demo",
     "type": "project",
     "minimum-stability": "stable",
     "prefer-stable": true,
