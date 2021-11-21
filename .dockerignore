@@ -14,6 +14,7 @@
 **/docker-compose.yml
 **/Dockerfile
 **/Thumbs.db
+.github/
 .editorconfig
 .env.*.local
 .env.local
