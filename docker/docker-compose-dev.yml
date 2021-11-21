@@ -16,6 +16,7 @@ services:
   php:
     container_name: php
     build:
+      dockerfile: php/Dockerfile.dev
       context: php
       args:
         PHP_XDEBUG_MODE: ${PHP_XDEBUG_MODE}
