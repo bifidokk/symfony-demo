@@ -43,7 +43,7 @@ COPY symfony.ini /etc/php8/cli/conf.d/
 COPY symfony.pool.conf /etc/php8/php-fpm.d/
 
 WORKDIR /var/www/symfony
-COPY ./../../ .
+COPY ./../../. .
 RUN composer install --no-interaction --no-progress
 
 CMD ["php-fpm8", "-F"]
