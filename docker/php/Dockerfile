@@ -32,31 +32,10 @@ RUN apk add --no-cache \
     make \
     curl
 
-# Enable php8-xdebug if $PHP_XDEBUG_MODE is not empty
-ARG PHP_XDEBUG_MODE=off
-ARG PHP_XDEBUG_CLIENT_PORT=5902
-ARG PHP_XDEBUG_CLIENT_HOST=host.docker.internal
-COPY xdebug.ini  /etc/php8/conf.d/xdebug.ini.template
-RUN if [[ "$PHP_XDEBUG_MODE" != "" ]]; then \
-        apk add --no-cache php8-pecl-xdebug; \
-        export PHP_XDEBUG_MODE=$PHP_XDEBUG_MODE; \
-        export PHP_XDEBUG_CLIENT_PORT=$PHP_XDEBUG_CLIENT_PORT; \
-        export PHP_XDEBUG_CLIENT_HOST=$PHP_XDEBUG_CLIENT_HOST; \
-        envsubst < /etc/php8/conf.d/xdebug.ini.template > /etc/php8/conf.d/xdebug.ini; \
-    fi
-RUN rm -f /etc/php8/conf.d/xdebug.ini.template
-
 RUN curl -sS https://getcomposer.org/installer | tee composer-setup.php \
     && php8 composer-setup.php && rm composer-setup.php* \
     && chmod +x composer.phar && mv composer.phar /usr/bin/composer \
     && ln -s /usr/bin/php8 /usr/local/bin/php
-
-ARG SYMFONY_CLI_VERSION
-RUN wget https://github.com/symfony/cli/releases/download/v$SYMFONY_CLI_VERSION/symfony_linux_amd64.gz \
-    && gzip -d symfony_linux_amd64.gz \
-    && mv symfony_linux_amd64 symfony \
-    && chmod +x symfony \
-    && mv symfony /usr/local/bin/
 
 COPY symfony.ini /etc/php8/conf.d/
 COPY symfony.ini /etc/php8/cli/conf.d/
