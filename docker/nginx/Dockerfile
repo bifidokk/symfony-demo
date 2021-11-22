@@ -3,8 +3,8 @@ FROM nginx:1.19.6
 RUN mkdir -p /etc/nginx/templates \
     mkdir -p /tmp/nginx
 
-COPY nginx.conf /etc/nginx/
-COPY templates/* /etc/nginx/templates/
+COPY ./docker/nginx/nginx.conf /etc/nginx/
+COPY ./docker/nginx/templates/* /etc/nginx/templates/
 
 ARG NGINX_SYMFONY_SERVER_NAME=''
 
