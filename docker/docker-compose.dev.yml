@@ -11,7 +11,7 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
     volumes:
-      - ./db:/var/lib/postgresql/data
+      - ./db:/var/lib/postgresql/data:rw
 
   php:
     container_name: php
@@ -34,6 +34,7 @@ services:
   nginx:
     container_name: nginx
     build:
+      dockerfile: nginx/Dockerfile.dev
       context: nginx
       args:
         NGINX_SYMFONY_SERVER_NAME: ${NGINX_SYMFONY_SERVER_NAME}
