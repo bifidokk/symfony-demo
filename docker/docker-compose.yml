@@ -18,9 +18,6 @@ services:
     image: bifidokk/symfony-demo:latest
     ports:
       - "${PHP_PORT}:9001"
-    volumes:
-      - ../:/var/www/symfony:cached
-      - ./logs/symfony:/var/www/symfony/var/log:cached
     depends_on:
       - db
 
@@ -33,4 +30,3 @@ services:
       - php
     volumes:
       - ./logs/nginx:/var/log/nginx:cached
-      - ../:/var/www/symfony:cached
