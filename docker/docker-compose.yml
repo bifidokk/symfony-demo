@@ -20,6 +20,8 @@ services:
       - "${PHP_PORT}:9001"
     depends_on:
       - db
+    volumes:
+      - app:/var/www/symfony
 
   nginx:
     container_name: nginx
@@ -30,3 +32,7 @@ services:
       - php
     volumes:
       - ./logs/nginx:/var/log/nginx:cached
+      - app:/var/www/symfony
+
+volumes:
+  app:
