@@ -17,7 +17,7 @@ services:
     container_name: php
     image: bifidokk/symfony-demo:latest
     ports:
-      - "9001:9001"
+      - "${PHP_PORT}:9001"
     volumes:
       - ../:/var/www/symfony:cached
       - ./logs/symfony:/var/www/symfony/var/log:cached
