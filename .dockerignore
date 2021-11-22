@@ -29,5 +29,4 @@ docker/.env
 helm/
 public/bundles/
 var/
-vendor/
 data/
