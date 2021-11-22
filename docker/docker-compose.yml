@@ -15,8 +15,7 @@ services:
 
   php:
     container_name: php
-    build:
-      context: php
+    image: bifidokk/symfony-demo:latest
     ports:
       - "9001:9001"
     volumes:
@@ -27,8 +26,7 @@ services:
 
   nginx:
     container_name: nginx
-    build:
-      context: nginx
+    image: bifidokk/symfony-demo-nginx:latest
     ports:
       - "${NGINX_PORT}:80"
     depends_on:
