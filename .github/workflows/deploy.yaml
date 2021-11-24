@@ -29,6 +29,7 @@ jobs:
           envkey_APP_ENV: prod
           envkey_APP_DEBUG: false
           envkey_APP_SECRET: ${{ secrets.APP_SECRET }}
+          directory: /var/www/symfony
           file_name: .env
       -
         name: Build and push php
