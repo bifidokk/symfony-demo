@@ -6,7 +6,7 @@ RUN mkdir -p /etc/nginx/templates \
 COPY ./docker/nginx/nginx.conf /etc/nginx/
 COPY ./docker/nginx/templates/* /etc/nginx/templates/
 
-ARG NGINX_SYMFONY_SERVER_NAME=''
+ARG NGINX_SYMFONY_SERVER_NAME='127.0.0.1'
 
 CMD ["nginx"]
 
