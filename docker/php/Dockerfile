@@ -46,6 +46,7 @@ WORKDIR '/var/www/symfony'
 
 COPY . .
 RUN composer install --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader
+RUN composer dump-env prod
 
 CMD ["php-fpm8", "-F"]
 
