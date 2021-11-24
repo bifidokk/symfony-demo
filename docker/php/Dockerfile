@@ -45,7 +45,7 @@ COPY ./docker/php/symfony.pool.conf /etc/php8/php-fpm.d/
 WORKDIR '/var/www/symfony'
 
 COPY . .
-RUN composer install --no-interaction --no-progress
+RUN composer install --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader
 
 CMD ["php-fpm8", "-F"]
 
