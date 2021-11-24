@@ -19,7 +19,9 @@ services:
     ports:
       - "${PHP_PORT}:9001"
     environment:
-      APP_ENV: prod
+      APP_ENV: ${APP_ENV}
+      MAILER_DSN: ${MAILER_DSN}
+      DATABASE_URL: ${DATABASE_URL}
     depends_on:
       - db
     volumes:
