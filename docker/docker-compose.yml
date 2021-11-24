@@ -18,6 +18,8 @@ services:
     image: bifidokk/symfony-demo:latest
     ports:
       - "${PHP_PORT}:9001"
+    environment:
+      APP_ENV: prod
     depends_on:
       - db
     volumes:
