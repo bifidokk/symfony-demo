@@ -46,12 +46,15 @@ COPY ./docker/php/symfony.pool.conf /etc/php8/php-fpm.d/
 WORKDIR '/var/www/symfony'
 
 COPY . .
+ENV DATABASE_URL=DATABASE_URL
+ENV APP_ENV=prod
+
 RUN composer install --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader --no-scripts
 RUN bin/console cache:warmup
 RUN HTTPDUSER=$(ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1)
 RUN setfacl -dR -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX ./var
 RUN setfacl -R -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX ./var
-ENV DATABASE_URL=DATABASE_URL
+
 
 CMD ["php-fpm8", "-F"]
 
