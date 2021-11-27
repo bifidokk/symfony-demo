@@ -1,6 +1,7 @@
 FROM alpine:3.15
 
 RUN apk add --no-cache \
+    acl \
     coreutils \
     gettext \
     php8-fpm \
@@ -47,6 +48,10 @@ WORKDIR '/var/www/symfony'
 COPY . .
 RUN composer install --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader --no-scripts
 RUN composer dump-env prod
+RUN bin/console cache:warmup
+RUN HTTPDUSER=$(ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1)
+RUN setfacl -dR -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX ./var
+RUN setfacl -R -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX ./var
 
 CMD ["php-fpm8", "-F"]
 
