@@ -43,6 +43,7 @@ COPY ./docker/php/symfony.ini /etc/php8/cli/conf.d/
 
 COPY ./docker/php/symfony.pool.conf /etc/php8/php-fpm.d/
 
+RUN adduser -S www-data -u 1000
 RUN apk --no-cache add shadow && usermod -u 1000 www-data && groupmod -g 1000 www-data
 USER "1000:1000"
 
