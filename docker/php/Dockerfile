@@ -46,7 +46,9 @@ COPY ./docker/php/symfony.pool.conf /etc/php8/php-fpm.d/
 WORKDIR '/var/www/symfony'
 
 COPY . .
-ENV DATABASE_URL=DATABASE_URL
+RUN --mount=type=secret,id=DATABASE_URL
+
+ENV DATABASE_URL=$(cat /run/secrets/DATABASE_URL)
 RUN echo "$DATABASE_URL"
 ENV APP_ENV=prod
 
