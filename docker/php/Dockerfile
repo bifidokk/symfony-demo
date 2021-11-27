@@ -46,10 +46,10 @@ COPY ./docker/php/symfony.pool.conf /etc/php8/php-fpm.d/
 WORKDIR '/var/www/symfony'
 
 COPY . .
-RUN --mount=type=secret,id=DATABASE_URL
+RUN --mount=type=secret,id=DATABASE_URL \
+  export DATABASE_URL=$(cat /run/secrets/DATABASE_URL) && \
+  echo $DATABASE_URL
 
-ENV DATABASE_URL=$(cat /run/secrets/DATABASE_URL)
-RUN echo "$DATABASE_URL"
 ENV APP_ENV=prod
 
 RUN composer install --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader --no-scripts
