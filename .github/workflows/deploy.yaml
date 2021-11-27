@@ -29,6 +29,8 @@ jobs:
           file: ./docker/php/Dockerfile
           push: true
           tags: bifidokk/symfony-demo:latest
+          secrets: |
+            "DATABASE_URL=${{ secrets.DATABASE_URL }}"
 
       - name: Build and push nginx
         uses: docker/build-push-action@v2
