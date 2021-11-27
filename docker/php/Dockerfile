@@ -47,6 +47,7 @@ WORKDIR '/var/www/symfony'
 
 COPY . .
 ENV DATABASE_URL=DATABASE_URL
+RUN echo "$DATABASE_URL"
 ENV APP_ENV=prod
 
 RUN composer install --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader --no-scripts
