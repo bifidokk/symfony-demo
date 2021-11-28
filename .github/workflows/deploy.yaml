@@ -42,6 +42,14 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
+          script_stop: true
           script: |
-            whoami
-            ls -al
+            cd /var/www/symfony-demo
+            git pull
+            docker compose --file ./docker/docker-compose.yml down
+            docker volume rm docker_app
+            docker compose --file ./docker/docker-compose.yml pull
+            docker compose --file ./docker/docker-compose.yml --env-file ./docker/.env.prod up -d
+            docker exec -it php bin/console cache:clear
+            docker exec -it php bin/console cache:warmup
+            docker exec -it php bin/console doctrine:migrations:migrate --no-interaction
