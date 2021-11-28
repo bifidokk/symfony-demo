@@ -35,3 +35,13 @@ jobs:
           file: ./docker/nginx/Dockerfile
           push: true
           tags: bifidokk/symfony-demo-nginx:latest
+
+      - name: Restart Docker compose with fresh images
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          script: |
+            whoami
+            ls -al
