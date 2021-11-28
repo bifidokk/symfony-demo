@@ -1,7 +1,7 @@
 FROM alpine:3.15
 
 RUN apk add --no-cache \
-    acl \
+    nano\
     coreutils \
     gettext \
     php8-fpm \
@@ -46,9 +46,6 @@ COPY ./docker/php/symfony.pool.conf /etc/php8/php-fpm.d/
 WORKDIR '/var/www/symfony'
 
 COPY . .
-RUN --mount=type=secret,id=DATABASE_URL \
-  export DATABASE_URL=$(cat /run/secrets/DATABASE_URL) && \
-  echo $DATABASE_URL
 
 ENV APP_ENV=prod
 
