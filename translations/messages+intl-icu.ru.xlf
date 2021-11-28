@@ -78,7 +78,7 @@
             </trans-unit>
             <trans-unit id="title.post_list">
                 <source>title.post_list</source>
-                <target>Список записей</target>
+                <target>Список записей блога</target>
             </trans-unit>
             <trans-unit id="title.edit_post">
                 <source>title.edit_post</source>
