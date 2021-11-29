@@ -37,8 +37,6 @@ RUN set -x ; \
   addgroup -g 82 -S www-data ; \
   adduser -u 82 -D -S -G www-data www-data && exit 0 ; exit 1
 
-USER www-data
-
 RUN curl -sS https://getcomposer.org/installer | tee composer-setup.php \
     && php8 composer-setup.php && rm composer-setup.php* \
     && chmod +x composer.phar && mv composer.phar /usr/bin/composer \
@@ -49,6 +47,7 @@ COPY ./docker/php/symfony.ini /etc/php8/cli/conf.d/
 
 COPY ./docker/php/symfony.pool.conf /etc/php8/php-fpm.d/
 
+USER www-data
 WORKDIR '/var/www/symfony'
 
 COPY . .
