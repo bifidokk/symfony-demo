@@ -50,7 +50,7 @@ COPY ./docker/php/symfony.pool.conf /etc/php8/php-fpm.d/
 USER www-data
 WORKDIR '/var/www/symfony'
 
-COPY . .
+COPY --chown=www-data:www-data . .
 
 ENV APP_ENV=prod
 
