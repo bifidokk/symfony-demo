@@ -16,7 +16,7 @@ services:
   php:
     container_name: php
     build:
-      dockerfile: php/Dockerfile.dev
+      dockerfile: Dockerfile.dev
       context: php
       args:
         PHP_XDEBUG_MODE: ${PHP_XDEBUG_MODE}
@@ -34,7 +34,7 @@ services:
   nginx:
     container_name: nginx
     build:
-      dockerfile: nginx/Dockerfile.dev
+      dockerfile: Dockerfile.dev
       context: nginx
       args:
         NGINX_SYMFONY_SERVER_NAME: ${NGINX_SYMFONY_SERVER_NAME}
