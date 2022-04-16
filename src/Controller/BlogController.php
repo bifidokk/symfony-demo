@@ -39,7 +39,8 @@ class BlogController extends AbstractController
 {
     public function __construct(
         private EntityManagerInterface $entityManager
-    ) {}
+    ) {
+    }
 
     /**
      * @Route("/", defaults={"page": "1", "_format"="html"}, methods="GET", name="blog_index")

@@ -42,7 +42,8 @@ class BlogController extends AbstractController
 {
     public function __construct(
         private EntityManagerInterface $entityManager
-    ) {}
+    ) {
+    }
 
     /**
      * Lists all Post entities.

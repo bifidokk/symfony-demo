@@ -33,7 +33,8 @@ class UserController extends AbstractController
 {
     public function __construct(
         private EntityManagerInterface $entityManager
-    ) {}
+    ) {
+    }
 
     /**
      * @Route("/edit", methods="GET|POST", name="user_edit")
