@@ -37,7 +37,7 @@ jobs:
               uses: shivammathur/setup-php@2.7.0
               with:
                   coverage: "none"
-                  extensions: intl, rdkafka,
+                  extensions: intl, php8-pecl-rdkafka,
                   php-version: ${{ matrix.php-version }}
                   tools: composer:v2
 
